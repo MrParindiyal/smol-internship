@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock-Paper-Scissor</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+
+        <script>
+            $(document).ready(function(){
+                $('button').click(function(){
+                    var btn_id = this.id;
+                    $.ajax({
+                        type: 'POST',
+                        url: '/exec',
+                        contentType: 'application/json',
+                        data: JSON.stringify({button_id: btn_id}),
+                        success: function(data){
+                            $('#score').html(data.score);
+                            $('#result').html(data.result);
+                            $('#bot').html(data.comp);
+                        }
+                    });
+                });
+            });
+        </script>
+
+    <body>
+        <h1>Rock Paper Scissor Game</h1>
+        <h2>
+            Choose an item to begin, then computer will make a random choice.<br>
+            Result and score will be shown accordingly.<br>
+        </h2>
+<hr color="#FFFFFF">
+        <h1><p>Score: 
+            <span id="score">?0?</span>
+        </p></h1>
+        <br>
+        <p>
+        <button id="rock-btn" class="image-button">
+            <img src="https://freepngimg.com/thumb/rock/7-2-rock-free-png-image-thumb.png" alt="loading_img" draggable="false">
+        </button>
+
+        <button id="paper-btn" class="image-button">
+            <img draggable="false" src="https://static.vecteezy.com/system/resources/thumbnails/022/219/336/small/white-torn-paper-isolated-on-a-transparent-background-png.png" alt="loading_img">
+        </button>
+        
+        <button id="scissor-btn" class="image-button">
+            <img draggable="false" src="https://freepngimg.com/thumb/scissor/13-2-scissor-free-download-png-thumb.png" alt="loading_img">
+        </button>
+        </p>
+        <h2>Computer chose <span id="bot"></span></h2>
+        <br>
+        <h1><p id="result"></p></h1>
+
+    </body>
+
+    <style>
+        body, h1{
+            align-items: center;
+            background-color: #00203F;
+            color: #ADEFD1;
+            text-align: center;
+        }
+
+        .image-button {
+            display: inline-block; 
+            padding: 10px 20px; 
+            background-color: #ADEFD1; 
+            color: #00203F; 
+            border: none; 
+            border-radius: 5px;
+            cursor: pointer; 
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: x-large;
+            margin: 10px;
+        }
+        button:active{
+            background-color: #97BC62;
+            color: #00203F;
+        }
+        button:hover{
+            background-color: #5CC8D7;
+            color: #00203F;
+        }
+        
+    </style>
+
+
+
+</html>
